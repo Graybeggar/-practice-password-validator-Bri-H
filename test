@@ -1,0 +1,22 @@
+const readlineSync = require('readline-sync');
+
+// Function to validate the password
+function isValidPassword(password) {
+    return (
+        password.length >= 8 &&               // At least 8 characters
+        /[A-Z]/.test(password) &&             // At least one uppercase letter
+        /[0-9]/.test(password)                // At least one number
+    );
+}
+
+// Password input loop
+let password;
+do {
+    password = readlineSync.question("Enter a password: ", { hideEchoBack: true });
+
+    if (!isValidPassword(password)) {
+        console.log("Invalid password! Ensure it has at least 8 characters, one uppercase letter, and one number.");
+    }
+} while (!isValidPassword(password));
+
+console.log("Success! Your password meets all requirements.");
